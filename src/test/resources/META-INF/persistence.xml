@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+  version="2.0">
+  
+  <!--
+        Persistence unit used in the unit tests that show case the eclipselink 2.6.4 bugs
+        Described in:
+            http://stackoverflow.com/questions/37310853/how-to-get-eclipselink-to-fire-jsr303-constraints-in-mapped-super-class/40942442#40942442
+   -->
+  <persistence-unit name="eclipseLinkPersistenceUnit">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>jpa.eclipselink.test.domain.GenericEntity</class>
+    <class>jpa.eclipselink.test.domain.Human</class>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+        <class>jpa.eclipselink.test.domain.GenericEntity</class>
+        <class>jpa.eclipselink.test.domain.Human</class>
+        <class>jpa.eclipselink.test.domain.SuperHero</class>
+        
+    
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />      
+      
+      <!-- property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.HSQLPlatform"/ -->
+      
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+      
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
+      
+      
+      <!-- Connect to the DB -->
+      <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+      <property name="javax.persistence.jdbc.url"    value="jdbc:hsqldb:mem:test" />
+      <property name="javax.persistence.jdbc.user" value="sa" />
+      <property name="javax.persistence.jdbc.password" value="" />
+      
+    </properties>
+  </persistence-unit>
+</persistence>
